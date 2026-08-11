@@ -18,13 +18,6 @@ Repository 이름과 공개 여부 설정
 Repository 생성
 ```
 
-생성한 원격 Repository를 로컬 프로젝트와 연결하면 로컬 커밋을 GitHub에 업로드할 수 있다.
-
-```bash
-git remote add origin https://github.com/사용자명/저장소명.git
-git remote -v
-```
-
 ### 1-2. Repository
 
 Repository(저장소)는 프로젝트의 파일과 변경 이력을 관리하는 공간이다.
