@@ -156,9 +156,64 @@ git push -u origin main
 
 기존 프로젝트에서 작업할 때는 보통 최신 내용 가져오기, 파일 수정, `git status`, `git add`, `git commit`, `git push` 순서로 진행한다.
 
-### 2-9. 오늘 터미널에서 실습한 Git 명령어
+### 2-9. 터미널에서 실습한 Git 명령어
 
-오늘 터미널에서는 다음과 같은 순서로 Git을 직접 사용했다.
+Git 커밋 날짜와 터미널 기록을 대조한 결과, 어제와 오늘의 실습 내용은 다음과 같이 구분된다.
+
+#### 8월 10일 실습
+
+- `hello.py`, `world.py` 파일 생성 및 커밋
+- `.gitignore` 파일 추가 및 커밋
+- `git status`, `git add`, `git commit`, `git log`, `git restore` 실습
+- `main` 브랜치 및 특정 커밋으로 이동
+
+#### 8월 11일 실습
+
+- `ai.py`, `left.py`, `right.py` 파일 생성
+- `left`와 `right` 브랜치 작업 후 `main`에 병합
+- `hello.py`에서 `a`, `b` 내용을 각각 커밋
+- `hello.py`에서 Merge Conflict 발생 및 해결
+- `hello.txt` 생성 및 커밋
+- `README.md` 작성 및 Repository 정보 기록
+
+오늘 학습한 브랜치와 병합 관련 흐름은 다음과 같다.
+
+```text
+ai.py 생성
+    ↓
+left 브랜치와 right 브랜치에서 각각 작업
+    ↓
+main 브랜치에 right 브랜치 병합
+    ↓
+hello.py에 a와 b를 각각 수정
+    ↓
+변경 내용이 충돌해 Merge Conflict 발생
+    ↓
+충돌 내용을 해결하고 커밋
+```
+
+아래 명령어 중 파일 생성·커밋·브랜치 이동 명령은 실습 과정에서 사용한 대표적인 명령이다.
+
+브랜치를 병합할 때는 다음과 같은 명령어를 사용한다.
+
+```bash
+git branch left
+git branch right
+git switch left
+git switch right
+git switch main
+git merge right
+```
+
+`main`과 병합할 브랜치가 서로 다른 커밋을 가지고 있으면 Git이 두 변경 내용을 합친다. 같은 파일의 같은 부분이 다르게 수정되어 자동으로 합칠 수 없으면 Merge Conflict가 발생한다.
+
+충돌이 발생했을 때는 충돌 표시가 포함된 파일을 직접 수정하고, 해결된 파일을 다시 추가한 뒤 커밋한다.
+
+```bash
+git status
+git add hello.py
+git commit -m "merge conflict in hello.py"
+```
 
 #### Git 설치 및 사용자 설정 확인
 
@@ -179,7 +234,7 @@ cd git
 code .
 ```
 
-프로젝트 폴더를 만들고 해당 폴더로 이동한 뒤, `code .` 명령어로 현재 폴더를 VSCode에서 열었다.
+프로젝트 폴더로 이동한 뒤, `code .` 명령어로 현재 폴더를 VSCode에서 열었다. 이 과정과 Git 사용자 설정은 날짜가 분명하게 기록된 커밋 작업과 구분해 참고용으로 정리했다.
 
 #### 현재 브랜치와 작업 상태 확인
 
@@ -236,7 +291,7 @@ git add .gitignore
 git commit -m "Create .gitignore"
 ```
 
-`.gitignore`는 Git이 추적하지 않을 파일이나 폴더를 지정하는 파일이다. 운영체제 파일, 개인 설정 파일, 비밀번호나 API 키 같은 민감한 파일이 Repository에 올라가지 않도록 관리할 때 사용한다.
+`.gitignore`는 Git이 추적하지 않을 파일이나 폴더를 지정하는 파일이다. 이 작업은 8월 10일에 진행했다. 운영체제 파일, 개인 설정 파일, 비밀번호나 API 키 같은 민감한 파일이 Repository에 올라가지 않도록 관리할 때 사용한다.
 
 ## 3. Branch
 
