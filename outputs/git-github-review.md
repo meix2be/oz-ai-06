@@ -156,6 +156,88 @@ git push -u origin main
 
 기존 프로젝트에서 작업할 때는 보통 최신 내용 가져오기, 파일 수정, `git status`, `git add`, `git commit`, `git push` 순서로 진행한다.
 
+### 2-9. 오늘 터미널에서 실습한 Git 명령어
+
+오늘 터미널에서는 다음과 같은 순서로 Git을 직접 사용했다.
+
+#### Git 설치 및 사용자 설정 확인
+
+```bash
+git --version
+git config --global user.name "본인 이름"
+git config --global user.email "본인 이메일"
+git config --list
+```
+
+`git --version`으로 Git이 설치되어 있는지 확인하고, `git config`로 커밋에 기록될 사용자 이름과 이메일을 설정했다.
+
+#### 프로젝트 폴더 이동 및 VSCode 실행
+
+```bash
+mkdir git
+cd git
+code .
+```
+
+프로젝트 폴더를 만들고 해당 폴더로 이동한 뒤, `code .` 명령어로 현재 폴더를 VSCode에서 열었다.
+
+#### 현재 브랜치와 작업 상태 확인
+
+```bash
+git branch --show-current
+git status
+```
+
+현재 작업 중인 브랜치와 아직 커밋되지 않은 변경사항을 확인했다.
+
+#### 파일을 추가하고 커밋하기
+
+```bash
+git add hello.py
+git status
+git commit
+
+git add world.py
+git status
+git commit -m "Create world.py"
+```
+
+파일을 `git add`로 Staging Area에 추가하고, `git commit`으로 변경 내용을 저장했다. 커밋 후에는 `git status`로 작업 상태를 다시 확인했다.
+
+#### 커밋 기록 확인하기
+
+```bash
+git log
+```
+
+`git log`를 사용해 생성된 커밋의 작성자, 날짜, 커밋 메시지, 커밋 ID를 확인했다.
+
+#### 변경사항 되돌리기
+
+```bash
+git restore .
+```
+
+아직 커밋하지 않은 작업 내용을 마지막 커밋 상태로 되돌리는 명령어다. 이미 커밋한 내용을 삭제하는 명령어는 아니므로, 사용 전에 현재 변경사항이 필요한지 확인해야 한다.
+
+#### 브랜치와 커밋 이동하기
+
+```bash
+git switch main
+git switch --detach a76a1575e8a4458c763c817c8d650f7fda578449
+```
+
+`git switch main`으로 `main` 브랜치로 이동하고, `git switch --detach`로 특정 커밋을 직접 확인했다. 특정 커밋을 확인하는 상태에서는 새 작업을 시작하기보다 내용을 살펴보는 용도로 사용하는 것이 좋다.
+
+#### `.gitignore` 파일 추가
+
+```bash
+git add .gitignore
+git commit -m "Create .gitignore"
+```
+
+`.gitignore`는 Git이 추적하지 않을 파일이나 폴더를 지정하는 파일이다. 운영체제 파일, 개인 설정 파일, 비밀번호나 API 키 같은 민감한 파일이 Repository에 올라가지 않도록 관리할 때 사용한다.
+
 ## 3. Branch
 
 ### 3-1. git branch 명령어
@@ -263,6 +345,7 @@ git merge --abort
 - Commit은 변경 내용을 하나의 버전으로 저장하는 작업이다.
 - `git add`는 커밋할 변경 내용을 Staging Area에 추가하고, `git commit`은 로컬 저장소에 저장한다.
 - `git push`는 로컬 커밋을 원격 저장소에 업로드하고, `git pull`은 원격 변경 내용을 로컬에 반영한다.
+- 오늘은 `git status`, `git add`, `git commit`, `git log`, `git restore`, `git switch`를 터미널에서 직접 실행하며 파일과 커밋 이력을 관리했다.
 - Branch는 작업 흐름을 분리하는 기능이며, `main`, `develop`, `feature`, `hotfix`, `release` 등의 역할로 관리할 수 있다.
 - Fast-forward는 브랜치 포인터만 이동하는 병합이고, 3-way merge는 새로운 Merge Commit을 생성하는 병합이다.
 - Merge Conflict는 Git이 변경 내용을 자동으로 합칠 수 없을 때 발생하며, 충돌 내용을 직접 수정한 뒤 다시 커밋해야 한다.
