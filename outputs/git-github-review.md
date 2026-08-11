@@ -311,11 +311,32 @@ git branch -a                     # 원격 브랜치까지 확인
 feature/login
 feature/payment
 hotfix/auth-error
-feature/login
 hotfix/login-error
 ```
 
-### 3-3. Fast-forward
+### 3-3. git merge
+
+`git merge`는 현재 브랜치에 다른 브랜치의 변경 내용을 합치는 명령어다. 보통 기능 개발이 끝난 브랜치를 `dev`나 `main`에 반영할 때 사용한다.
+
+```bash
+git switch dev
+git merge feature/login
+```
+
+위 명령은 `dev` 브랜치로 이동한 뒤 `feature/login` 브랜치의 변경 내용을 `dev`에 병합한다. 병합 결과는 현재 checkout되어 있는 브랜치에 반영된다.
+
+```text
+현재 브랜치: dev
+병합 대상:   feature/login
+
+git merge feature/login
+        ↓
+feature/login의 변경 내용이 dev에 반영됨
+```
+
+병합할 때 두 브랜치의 커밋 구조에 따라 Fast-forward 또는 3-way merge가 발생한다. 변경한 부분이 서로 겹쳐 Git이 자동으로 합치지 못하면 Merge Conflict가 발생하며, 충돌을 직접 해결한 뒤 커밋해야 한다.
+
+### 3-4. Fast-forward
 
 Fast-forward는 병합 대상 브랜치에 별도의 새로운 커밋이 없을 때, 브랜치 포인터만 앞으로 이동하는 병합 방식이다.
 
@@ -331,7 +352,7 @@ feature: A - B - C
 
 `main`에서 작업한 내용이 없고 `feature/*` 브랜치만 앞으로 진행된 경우에 발생한다. 별도의 Merge Commit이 생성되지 않는다.
 
-### 3-4. 3-way merge
+### 3-5. 3-way merge
 
 3-way merge는 두 브랜치가 공통 조상 커밋 이후 각각 변경되었을 때 사용하는 병합 방식이다. Git은 공통 조상, 현재 브랜치의 최신 커밋, 병합할 브랜치의 최신 커밋을 비교한다.
 
@@ -350,7 +371,7 @@ git switch main
 git merge feature/login
 ```
 
-### 3-5. Merge conflict
+### 3-6. Merge conflict
 
 Merge Conflict는 Git이 두 브랜치의 변경 내용을 자동으로 합칠 수 없을 때 발생하는 충돌이다. 같은 파일의 같은 부분을 서로 다르게 수정했을 때 주로 발생한다.
 
