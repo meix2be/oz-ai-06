@@ -2,33 +2,30 @@
 
 ## 1. Git / GitHub
 
-### 1-1. Git과 GitHub를 사용해야 하는 이유
+### 1-1. GitHub 계정과 Repository 생성
 
-Git은 소스 코드와 파일의 변경 이력을 관리하는 분산 버전 관리 시스템이다. 파일이 언제, 어떻게 변경되었는지 기록하고 문제가 발생했을 때 이전 상태로 되돌릴 수 있다.
+GitHub 계정으로 로그인한 뒤 새 Repository를 생성한다. 이번 실습에서는 Public Repository를 만들고 GitHub에서 코드를 관리했다.
 
-GitHub는 Git 저장소를 인터넷에서 저장하고 공유하는 원격 플랫폼이다. 여러 개발자가 같은 프로젝트에서 협업하고 코드 리뷰, 이슈 관리, Pull Request 등을 진행할 수 있다.
+Repository를 생성할 때는 저장소 이름, 공개 여부(Public/Private), README 파일 생성 여부 등을 설정할 수 있다.
 
-Git과 GitHub를 사용하면 다음과 같은 장점이 있다.
+```text
+GitHub 로그인
+    ↓
+New repository 선택
+    ↓
+Repository 이름과 공개 여부 설정
+    ↓
+Repository 생성
+```
 
-- 작업 내용을 버전별로 기록할 수 있다.
-- 문제가 발생했을 때 이전 버전으로 되돌릴 수 있다.
-- 여러 사람이 동시에 프로젝트를 작업할 수 있다.
-- 기능별로 작업을 분리할 수 있다.
-- 원격 저장소에 코드를 백업하고 공유할 수 있다.
-- 변경 내용을 비교하고 코드 리뷰를 진행할 수 있다.
+생성한 원격 Repository를 로컬 프로젝트와 연결하면 로컬 커밋을 GitHub에 업로드할 수 있다.
 
-### 1-2. Git과 GitHub의 차이
+```bash
+git remote add origin https://github.com/사용자명/저장소명.git
+git remote -v
+```
 
-| 구분 | Git | GitHub |
-| --- | --- | --- |
-| 종류 | 버전 관리 도구 | Git 저장소 호스팅 서비스 |
-| 실행 위치 | 개발자의 컴퓨터 | 인터넷상의 원격 서버 |
-| 주요 역할 | 변경 이력, 커밋, 브랜치 관리 | 저장소 공유, 협업, 코드 리뷰 |
-| 인터넷 필요 여부 | 기본 작업은 없어도 가능 | 원격 저장소와 통신할 때 필요 |
-
-Git은 로컬 컴퓨터에서 동작하고, GitHub는 Git 저장소를 원격으로 보관하고 협업 기능을 제공한다.
-
-### 1-3. Repository
+### 1-2. Repository
 
 Repository(저장소)는 프로젝트의 파일과 변경 이력을 관리하는 공간이다.
 
@@ -37,7 +34,7 @@ Repository(저장소)는 프로젝트의 파일과 변경 이력을 관리하는
 
 저장소에는 프로젝트 파일뿐 아니라 커밋 기록, 브랜치 정보, 태그 등의 데이터도 저장된다.
 
-### 1-4. Commit
+### 1-3. Commit
 
 Commit은 변경된 파일의 상태를 하나의 버전으로 저장하는 작업이다. 커밋에는 변경 내용과 커밋 메시지가 함께 기록된다.
 
@@ -53,13 +50,13 @@ git commit -m "README 파일 수정"
 지양할 예시: 수정
 ```
 
-### 1-5. Branch
+### 1-4. Branch
 
 Branch(브랜치)는 하나의 프로젝트에서 작업 흐름을 분리하는 기능이다. 기본 브랜치의 코드를 직접 수정하지 않고 새로운 브랜치에서 기능을 개발한 뒤, 작업이 완료되면 다시 병합할 수 있다.
 
 ```text
 main
- ├── develop
+ ├── dev
  │    ├── feature/login
  │    └── feature/payment
  └── hotfix/login-error
@@ -311,18 +308,18 @@ git branch -a                     # 원격 브랜치까지 확인
 | 브랜치 | 역할 |
 | --- | --- |
 | `main` | 실제 배포 가능한 안정적인 코드 |
-| `develop` | 다음 버전 개발 내용을 통합하는 브랜치 |
-| `feature` | 새로운 기능을 개발하는 브랜치 |
-| `hotfix` | 운영 중인 서비스의 긴급한 버그를 수정하는 브랜치 |
-| `release` | 배포 전 테스트와 마무리를 진행하는 브랜치 |
+| `dev` | 개발 중인 기능을 통합하는 브랜치 |
+| `feature/*` | 새로운 기능을 개발하는 브랜치 |
+| `hotfix/*` | 운영 중인 서비스의 긴급한 버그를 수정하는 브랜치 |
 
-일반적인 작업 흐름은 `develop`에서 `feature/login`을 생성하고, 기능 개발이 끝나면 `develop`에 병합하는 방식이다. 배포 준비가 끝나면 `release`에서 테스트한 뒤 `main`에 병합한다. 운영 중 긴급한 문제가 발생하면 `hotfix` 브랜치에서 수정한다.
+일반적인 작업 흐름은 `dev`에서 `feature/login`을 생성하고, 기능 개발이 끝나면 `dev`에 병합하는 방식이다. 검증이 끝난 코드는 `main`에 병합해 배포하고, 운영 중 긴급한 문제가 발생하면 `hotfix/login-error` 브랜치에서 수정한다.
 
 ```text
 feature/login
 feature/payment
 hotfix/auth-error
-release/1.0.0
+feature/login
+hotfix/login-error
 ```
 
 ### 3-3. Fast-forward
@@ -339,7 +336,7 @@ main:    A - B - C
 feature: A - B - C
 ```
 
-`main`에서 작업한 내용이 없고 `feature` 브랜치만 앞으로 진행된 경우에 발생한다. 별도의 Merge Commit이 생성되지 않는다.
+`main`에서 작업한 내용이 없고 `feature/*` 브랜치만 앞으로 진행된 경우에 발생한다. 별도의 Merge Commit이 생성되지 않는다.
 
 ### 3-4. 3-way merge
 
@@ -401,6 +398,6 @@ git merge --abort
 - `git add`는 커밋할 변경 내용을 Staging Area에 추가하고, `git commit`은 로컬 저장소에 저장한다.
 - `git push`는 로컬 커밋을 원격 저장소에 업로드하고, `git pull`은 원격 변경 내용을 로컬에 반영한다.
 - 오늘은 `git status`, `git add`, `git commit`, `git log`, `git restore`, `git switch`를 터미널에서 직접 실행하며 파일과 커밋 이력을 관리했다.
-- Branch는 작업 흐름을 분리하는 기능이며, `main`, `develop`, `feature`, `hotfix`, `release` 등의 역할로 관리할 수 있다.
+- Branch는 작업 흐름을 분리하는 기능이며, `main`, `dev`, `feature/*`, `hotfix/*` 등의 역할로 관리할 수 있다.
 - Fast-forward는 브랜치 포인터만 이동하는 병합이고, 3-way merge는 새로운 Merge Commit을 생성하는 병합이다.
 - Merge Conflict는 Git이 변경 내용을 자동으로 합칠 수 없을 때 발생하며, 충돌 내용을 직접 수정한 뒤 다시 커밋해야 한다.
