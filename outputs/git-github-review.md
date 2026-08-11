@@ -337,13 +337,13 @@ feature: A - B - C
 
 ```text
           B (main)
-         / \
-A ------   M (Merge Commit)
-         \
+         /       \
+A ------         M (Merge Commit)
+         \       /
           C (feature)
 ```
 
-두 브랜치의 변경 내용을 합치기 위해 새로운 Merge Commit이 생성된다.
+`M`은 `B`와 `C`를 부모 커밋으로 가지는 새로운 Merge Commit이다. 즉, `C`는 `M`과 연결되어 있으며, `M`에서 `C`로 이어지는 선은 feature 브랜치의 변경 내용을 병합했다는 의미다.
 
 ```bash
 git switch main
