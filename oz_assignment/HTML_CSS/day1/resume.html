@@ -3,84 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>홍길동의 이력서</title>
-  <style>
-    body {
-      max-width: 900px;
-      margin: 40px auto;
-      padding: 0 24px;
-      color: #222;
-      font-family: Arial, "Noto Sans KR", sans-serif;
-      line-height: 1.6;
-    }
-
-    h1, h2 {
-      margin-bottom: 12px;
-    }
-
-    hr {
-      border: 0;
-      border-top: 1px solid #999;
-      margin: 18px 0;
-    }
-
-    .profile {
-      display: flex;
-      align-items: flex-start;
-      gap: 24px;
-    }
-
-    .profile img {
-      width: 180px;
-      height: 180px;
-      object-fit: cover;
-      border-radius: 8px;
-    }
-
-    a {
-      color: #1769aa;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 12px;
-    }
-
-    th, td {
-      border: 1px solid #777;
-      padding: 10px;
-      text-align: left;
-    }
-
-    th {
-      background-color: #f1f3f5;
-    }
-
-    .mail-form {
-      display: grid;
-      grid-template-columns: 120px 1fr;
-      gap: 12px;
-      align-items: center;
-      max-width: 620px;
-    }
-
-    input, textarea, button {
-      box-sizing: border-box;
-      padding: 9px 10px;
-      font: inherit;
-    }
-
-    textarea {
-      min-height: 100px;
-      resize: vertical;
-    }
-
-    button {
-      width: fit-content;
-      cursor: pointer;
-    }
-  </style>
+  <title>코리락쿠마의 이력서</title>
 </head>
 <body>
   <header>
@@ -91,12 +14,13 @@
   <main>
     <section class="profile">
       <img
-        src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=360&q=80"
+        src="images.jpeg"
         alt="프로필 이미지"
+        width="300"
+        height="300"
       >
       <div>
-        <p>안녕하세요. 새로운 것을 배우고 직접 만들어 보는 것을 좋아하는 홍길동입니다.</p>
-        <p>HTML과 Git을 공부하며 작은 프로젝트를 하나씩 완성하고 있습니다.</p>
+        <p>안녕하세요. 코리락쿠마입니다.</p>
         <p>
           <a href="https://github.com/meix2be/oz-ai-06" target="_blank" rel="noopener noreferrer">
             내 Repository 바로가기
@@ -109,11 +33,11 @@
       <h2>Basic Information</h2>
       <hr>
       <ul>
-        <li>이름: 홍길동</li>
-        <li>나이: 20대</li>
+        <li>이름: 코리락쿠마</li>
+        <li>나이: 5살</li>
         <li>전공: 웹 개발</li>
         <li>성별: 비공개</li>
-        <li>거주지: 서울</li>
+        <li>거주지: 비밀</li>
       </ul>
     </section>
 
@@ -123,9 +47,9 @@
       <ol type="i">
         <li>취미: 독서</li>
         <li>좋아하는 음식: 파스타</li>
-        <li>좋아하는 영화: 인터스텔라</li>
-        <li>좋아하는 책: 개발 관련 서적</li>
-        <li>좋아하는 음악 장르: 재즈</li>
+        <li>좋아하는 영화: 코코</li>
+        <li>좋아하는 책: 모순</li>
+        <li>좋아하는 음악 장르: 발라드</li>
       </ol>
     </section>
 
@@ -143,7 +67,7 @@
         </thead>
         <tbody>
           <tr>
-            <td>무지개 스튜디오</td>
+            <td>리락쿠마 스튜디오</td>
             <td>웹 개발 보조</td>
             <td>2024 ~ 2025</td>
             <td>HTML 페이지 제작 및 문서 관리</td>
@@ -168,10 +92,6 @@
         <label for="company">회사명</label>
         <input id="company" name="company" type="text" placeholder="회사명을 입력하세요" required>
 
-        <label for="message">자기소개서</label>
-        <textarea id="message" name="message" placeholder="자기소개서를 작성하세요" required></textarea>
-
-        <span></span>
         <button type="submit">이력서 전송하기</button>
       </form>
     </section>
