@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>코리락쿠마의 이력서</title>
+  <link rel="stylesheet" href="resume_style.css">
+</head>
+<body>
+  <aside class="sidebar">
+    <nav aria-label="이력서 메뉴">
+      <a class="active" href="#resume">이력서</a>
+      <a href="#portfolio">포트폴리오</a>
+      <a href="#contact">메일 보내기</a>
+    </nav>
+  </aside>
+
+  <main id="resume" class="resume-container">
+    <header class="resume-header">
+      <div>
+        <p class="eyebrow">WEB DEVELOPER PORTFOLIO</p>
+        <h1>코리락쿠마</h1>
+        <ul class="contact-list">
+          <li>010-1234-5678</li>
+          <li><a href="mailto:korilakkuma@example.com">korilakkuma@example.com</a></li>
+          <li><a href="https://github.com/meix2be/oz-ai-06" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+        </ul>
+      </div>
+      <img class="profile-image" src="images.jpeg" alt="코리락쿠마 프로필 이미지">
+    </header>
+
+    <section class="resume-section" id="introduce">
+      <h2>Introduce</h2>
+      <p>안녕하세요. 새로운 것을 배우고 직접 만들어 보는 것을 좋아하는 코리락쿠마입니다.</p>
+      <p>HTML, CSS와 Git을 공부하며 보기 좋고 사용하기 편한 웹 페이지를 만드는 개발자로 성장하고 있습니다.</p>
+    </section>
+
+    <section class="resume-section" id="skills">
+      <h2>Skills</h2>
+      <div class="skill-group">
+        <h3>LANGUAGE</h3>
+        <ul class="skill-list">
+          <li>HTML</li>
+          <li>CSS</li>
+          <li>JavaScript</li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <h3>TOOLS</h3>
+        <ul class="skill-list">
+          <li>VSCode</li>
+          <li>Git</li>
+          <li>GitHub</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="resume-section" id="portfolio">
+      <h2>Experience</h2>
+      <article class="experience-item">
+        <div class="experience-heading">
+          <div>
+            <h3>리락쿠마 스튜디오</h3>
+            <p class="role">Web Developer Assistant</p>
+          </div>
+          <time datetime="2024/2025">2024 ~ 2025</time>
+        </div>
+        <h4>개인 이력서 페이지 제작</h4>
+        <ul>
+          <li>HTML 시맨틱 태그를 활용해 자기소개와 경력 정보 구성</li>
+          <li>CSS Box Model과 Flexbox를 이용한 레이아웃 정렬</li>
+          <li>반응형 디자인으로 모바일 화면까지 대응</li>
+        </ul>
+      </article>
+      <article class="experience-item">
+        <div class="experience-heading">
+          <div>
+            <h3>오즈 프로젝트</h3>
+            <p class="role">HTML/CSS 학습</p>
+          </div>
+          <time datetime="2026">2026 ~ 현재</time>
+        </div>
+        <h4>웹 기초와 협업 도구 학습</h4>
+        <ul>
+          <li>Git과 GitHub를 활용한 프로젝트 버전 관리</li>
+          <li>외부 CSS 방식으로 웹 페이지 스타일 분리</li>
+        </ul>
+      </article>
+    </section>
+
+    <section class="resume-section info-section">
+      <h2>Education</h2>
+      <div class="timeline-row"><time>2026</time><p>오즈코딩스쿨 웹 개발 과정</p></div>
+    </section>
+
+    <section class="resume-section info-section">
+      <h2>Awards</h2>
+      <div class="timeline-row"><time>2026.08</time><p>HTML/CSS 이력서 페이지 제작</p></div>
+    </section>
+
+    <section class="resume-section info-section">
+      <h2>Certifications</h2>
+      <div class="timeline-row"><time>2026</time><p>GitHub Repository 과제 제출</p></div>
+    </section>
+
+    <section class="resume-section" id="contact">
+      <h2>Send Message</h2>
+      <form class="contact-form" action="#" method="post">
+        <label for="email">이메일</label>
+        <input id="email" name="email" type="email" placeholder="email@example.com" required>
+        <label for="message">메시지</label>
+        <textarea id="message" name="message" placeholder="메시지를 입력하세요" required></textarea>
+        <button type="submit">보내기</button>
+      </form>
+    </section>
+  </main>
+</body>
+</html>
