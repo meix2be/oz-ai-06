@@ -121,6 +121,13 @@ h3, h4 {
   color: var(--accent);
 }
 
+.contact-list i {
+  width: 18px;
+  margin-right: 4px;
+  color: var(--text);
+  text-align: center;
+}
+
 .profile-image {
   width: 124px;
   height: 124px;
@@ -223,39 +230,6 @@ h3, h4 {
   font-weight: 700;
 }
 
-.contact-form {
-  display: grid;
-  grid-template-columns: 100px 1fr;
-  gap: 12px;
-  align-items: center;
-}
-
-input, textarea, button {
-  width: 100%;
-  padding: 10px 12px;
-  border: 1px solid #d7d7d7;
-  border-radius: 5px;
-  font: inherit;
-}
-
-textarea {
-  min-height: 110px;
-  resize: vertical;
-}
-
-button {
-  grid-column: 2;
-  width: fit-content;
-  padding-inline: 24px;
-  background: var(--text);
-  color: #fff;
-  cursor: pointer;
-}
-
-button:hover {
-  background: var(--accent);
-}
-
 @media (max-width: 760px) {
   .sidebar {
     position: static;
@@ -302,11 +276,4 @@ button:hover {
     margin-bottom: 6px;
   }
 
-  .contact-form {
-    grid-template-columns: 1fr;
-  }
-
-  button {
-    grid-column: 1;
-  }
 }
