@@ -56,6 +56,12 @@ body {
   width: 124px;
   height: 124px;
   object-fit: cover;
+  transition: transform 0.35s ease, filter 0.35s ease;
+}
+
+.profile-image:hover {
+  transform: scale(1.08) rotate(3deg);
+  filter: saturate(1.25);
 }
 
 .contact-list a:hover {
@@ -75,6 +81,97 @@ body {
   padding: 0.55rem 0.9rem;
   color: #49617c;
   font-size: 0.9rem;
+  transition: transform 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+}
+
+.skill-badge:hover {
+  transform: translateY(-4px);
+  background-color: var(--accent) !important;
+  color: #fff !important;
+}
+
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+}
+
+.project-card {
+  overflow: hidden;
+  border: 1px solid #e8ebef;
+  border-radius: 1rem;
+  background: #fff;
+  box-shadow: 0 4px 14px rgba(38, 38, 38, 0.06);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 14px 28px rgba(38, 38, 38, 0.14);
+}
+
+.project-image-wrap {
+  position: relative;
+  display: grid;
+  min-height: 150px;
+  place-items: center;
+  overflow: hidden;
+  background: #f0f3f7;
+  color: #49617c;
+  font-size: 3rem;
+}
+
+.project-image-wrap::after {
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.08);
+  content: "";
+  transition: background-color 0.3s ease;
+}
+
+.project-card:hover .project-image-wrap::after {
+  background: rgba(47, 128, 237, 0.18);
+}
+
+.project-image {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  transition: transform 0.4s ease, filter 0.4s ease;
+}
+
+.project-card:hover .project-image {
+  transform: scale(1.1);
+  filter: saturate(1.25);
+}
+
+.project-image-alt {
+  background: linear-gradient(135deg, #dbeafe, #bfdbfe 45%, #93c5fd);
+}
+
+.project-image-dark {
+  background: linear-gradient(135deg, #263238, #49617c);
+  color: #fff;
+}
+
+.project-number {
+  position: absolute;
+  z-index: 1;
+  top: 0.75rem;
+  right: 0.75rem;
+  display: grid;
+  width: 2rem;
+  height: 2rem;
+  place-items: center;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.85);
+  color: var(--text);
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.project-content {
+  padding: 1.1rem;
 }
 
 .experience-item {
@@ -104,5 +201,15 @@ body {
   .contact-list {
     display: grid !important;
     gap: 0.45rem !important;
+  }
+
+  .project-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (min-width: 576px) and (max-width: 991.98px) {
+  .project-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
