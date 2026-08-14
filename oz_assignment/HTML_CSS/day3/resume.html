@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>코리락쿠마의 이력서 | Day 3</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="resume_style.css">
+</head>
+<body>
+  <nav class="navbar navbar-dark bg-dark d-lg-none sticky-top" aria-label="모바일 메뉴">
+    <div class="container-fluid">
+      <a class="navbar-brand fw-bold" href="#resume">코리락쿠마 이력서</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mobileMenu" aria-controls="mobileMenu" aria-expanded="false" aria-label="메뉴 열기">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="mobileMenu">
+        <div class="navbar-nav">
+          <a class="nav-link" href="#introduce">Introduce</a>
+          <a class="nav-link" href="#skills">Skills</a>
+          <a class="nav-link" href="#experience">Experience</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <aside class="sidebar d-none d-lg-flex flex-column position-fixed top-0 bottom-0 start-0 bg-dark p-4">
+    <nav class="nav flex-column gap-2" aria-label="이력서 메뉴">
+      <a class="nav-link active" href="#resume">이력서</a>
+      <a class="nav-link" href="#portfolio">포트폴리오</a>
+      <a class="nav-link" href="#skills">기술 스택</a>
+    </nav>
+  </aside>
+
+  <main id="resume" class="resume-container container-fluid py-4 py-lg-5">
+    <div class="resume-paper mx-auto bg-white rounded-3 shadow-sm p-4 p-md-5">
+      <header class="resume-header row align-items-center g-4 pb-4 border-bottom border-2">
+        <div class="col-12 col-md">
+          <p class="eyebrow text-primary fw-bold mb-2">WEB DEVELOPER PORTFOLIO</p>
+          <h1 class="display-4 fw-bold mb-3">코리락쿠마</h1>
+          <ul class="contact-list list-unstyled d-flex flex-wrap gap-3 mb-0 text-secondary">
+            <li><i class="fa-solid fa-mobile-screen-button me-1" aria-hidden="true"></i>010-1234-5678</li>
+            <li><a href="mailto:korilakkuma@example.com" class="link-secondary"><i class="fa-regular fa-envelope me-1" aria-hidden="true"></i>korilakkuma@example.com</a></li>
+            <li><a href="https://github.com/meix2be/oz-ai-06" target="_blank" rel="noopener noreferrer" class="link-secondary"><i class="fa-brands fa-github me-1" aria-hidden="true"></i>GitHub</a></li>
+          </ul>
+        </div>
+        <div class="col-12 col-md-auto text-md-end">
+          <img class="profile-image rounded-circle border border-4 border-light shadow-sm" src="images.jpeg" alt="코리락쿠마 프로필 이미지">
+        </div>
+      </header>
+
+      <section class="resume-section mt-5" id="introduce">
+        <h2 class="section-title border-start border-5 ps-3 mb-4">Introduce</h2>
+        <p class="text-secondary mb-2">안녕하세요. 새로운 것을 배우고 직접 만들어 보는 것을 좋아하는 코리락쿠마입니다.</p>
+        <p class="text-secondary mb-0">HTML, CSS와 Git을 공부하며 보기 좋고 사용하기 편한 웹 페이지를 만드는 개발자로 성장하고 있습니다.</p>
+      </section>
+
+      <section class="resume-section mt-5" id="skills">
+        <h2 class="section-title border-start border-5 ps-3 mb-4">Skills</h2>
+        <div class="row g-4">
+          <div class="col-12 col-md-6">
+            <h3 class="skill-label text-uppercase text-secondary fs-6 fw-bold">Language</h3>
+            <div class="d-flex flex-wrap gap-2">
+              <span class="badge rounded-pill text-bg-light border skill-badge">HTML</span>
+              <span class="badge rounded-pill text-bg-light border skill-badge">CSS</span>
+              <span class="badge rounded-pill text-bg-light border skill-badge">JavaScript</span>
+            </div>
+          </div>
+          <div class="col-12 col-md-6">
+            <h3 class="skill-label text-uppercase text-secondary fs-6 fw-bold">Tools</h3>
+            <div class="d-flex flex-wrap gap-2">
+              <span class="badge rounded-pill text-bg-light border skill-badge">VSCode</span>
+              <span class="badge rounded-pill text-bg-light border skill-badge">Git</span>
+              <span class="badge rounded-pill text-bg-light border skill-badge">GitHub</span>
+              <span class="badge rounded-pill text-bg-light border skill-badge">Bootstrap</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="resume-section mt-5" id="experience">
+        <h2 class="section-title border-start border-5 ps-3 mb-4">Experience</h2>
+        <article class="experience-item border-start ps-3 mb-4">
+          <div class="d-flex flex-column flex-md-row justify-content-between gap-2">
+            <div>
+              <h3 class="h5 fw-bold mb-1">리락쿠마 스튜디오</h3>
+              <p class="role text-secondary fw-bold mb-3">Web Developer Assistant</p>
+            </div>
+            <time class="text-secondary" datetime="2024/2025">2024 ~ 2025</time>
+          </div>
+          <h4 class="h6 fw-bold">개인 이력서 페이지 제작</h4>
+          <ul class="text-secondary mb-0">
+            <li>HTML 시맨틱 태그를 활용해 자기소개와 경력 정보 구성</li>
+            <li>CSS Box Model과 Flexbox를 이용한 레이아웃 정렬</li>
+            <li>Bootstrap Grid와 미디어 쿼리로 반응형 화면 구현</li>
+          </ul>
+        </article>
+        <article class="experience-item border-start ps-3">
+          <div class="d-flex flex-column flex-md-row justify-content-between gap-2">
+            <div>
+              <h3 class="h5 fw-bold mb-1">오즈 프로젝트</h3>
+              <p class="role text-secondary fw-bold mb-3">HTML/CSS 학습</p>
+            </div>
+            <time class="text-secondary" datetime="2026">2026 ~ 현재</time>
+          </div>
+          <h4 class="h6 fw-bold">웹 기초와 협업 도구 학습</h4>
+          <ul class="text-secondary mb-0">
+            <li>Git과 GitHub를 활용한 프로젝트 버전 관리</li>
+            <li>External CSS와 Bootstrap을 활용한 스타일 분리</li>
+          </ul>
+        </article>
+      </section>
+
+      <section class="resume-section info-section mt-5 pt-4 border-top">
+        <h2 class="section-title border-start border-5 ps-3 mb-4">Education</h2>
+        <div class="row"><time class="col-12 col-md-3 text-secondary" datetime="2026">2026</time><p class="col mb-0 fw-bold">오즈코딩스쿨 웹 개발 과정</p></div>
+      </section>
+
+      <section class="resume-section info-section mt-5 pt-4 border-top">
+        <h2 class="section-title border-start border-5 ps-3 mb-4">Awards</h2>
+        <div class="row"><time class="col-12 col-md-3 text-secondary" datetime="2026-08">2026.08</time><p class="col mb-0 fw-bold">HTML/CSS 이력서 페이지 제작</p></div>
+      </section>
+
+      <section class="resume-section info-section mt-5 pt-4 border-top">
+        <h2 class="section-title border-start border-5 ps-3 mb-4">Certifications</h2>
+        <div class="row"><time class="col-12 col-md-3 text-secondary">현재</time><p class="col mb-0 fw-bold">취득한 자격증 없음</p></div>
+      </section>
+    </div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

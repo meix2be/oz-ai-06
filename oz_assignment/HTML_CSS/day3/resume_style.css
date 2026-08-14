@@ -1,0 +1,108 @@
+:root {
+  --page: #f6f7f9;
+  --text: #262626;
+  --muted: #777;
+  --accent: #2f80ed;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-width: 320px;
+  margin: 0;
+  background: var(--page);
+  color: var(--text);
+  font-family: Arial, "Noto Sans KR", sans-serif;
+  line-height: 1.6;
+}
+
+.sidebar {
+  width: 200px;
+  z-index: 10;
+}
+
+.sidebar .nav-link {
+  padding: 8px 0;
+  color: #fff;
+  font-weight: 700;
+}
+
+.sidebar .nav-link:hover,
+.sidebar .nav-link.active {
+  color: var(--accent);
+}
+
+.resume-container {
+  min-height: 100vh;
+  margin-left: 200px;
+}
+
+.resume-paper {
+  width: min(880px, 100%);
+}
+
+.eyebrow {
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+}
+
+.profile-image {
+  width: 124px;
+  height: 124px;
+  object-fit: cover;
+}
+
+.contact-list a:hover {
+  color: var(--accent) !important;
+}
+
+.section-title {
+  font-size: 1.65rem;
+  font-weight: 700;
+}
+
+.skill-label {
+  letter-spacing: 0.1em;
+}
+
+.skill-badge {
+  padding: 0.55rem 0.9rem;
+  color: #49617c;
+  font-size: 0.9rem;
+}
+
+.experience-item {
+  border-color: #e5e5e5 !important;
+}
+
+.experience-item li {
+  margin: 0.35rem 0;
+}
+
+@media (max-width: 991.98px) {
+  .resume-container {
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .resume-paper {
+    border-radius: 0 !important;
+  }
+
+  .profile-image {
+    width: 96px;
+    height: 96px;
+  }
+
+  .contact-list {
+    display: grid !important;
+    gap: 0.45rem !important;
+  }
+}
