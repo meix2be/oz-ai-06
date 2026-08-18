@@ -1,10 +1,19 @@
 // 콘솔창 계산기
 // 사용법: 개발자 도구 Console에서 start() 실행
-function start() {
-  const expression = prompt(
-    "계산식을 입력하세요.",
-    "1 + 2 * 3 - 5 / 6"
-  );
+function start(expression) {
+  if (expression === undefined) {
+    try {
+      expression = prompt(
+        "계산식을 입력하세요.",
+        "1 + 2 * 3 - 5 / 6"
+      );
+    } catch (error) {
+      console.log(
+        '이 브라우저는 prompt()를 지원하지 않습니다. start("1 + 2 * 3 - 5 / 6")처럼 실행하세요.'
+      );
+      return;
+    }
+  }
 
   if (expression === null) {
     console.log("계산을 취소했습니다.");
