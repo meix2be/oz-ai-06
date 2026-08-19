@@ -1,132 +1,65 @@
 const display = document.querySelector("#display");
-const numberButtons = document.querySelectorAll("[data-number]");
-const operatorButtons = document.querySelectorAll("[data-operator]");
-const clearButton = document.querySelector('[data-action="clear"]');
-const powerButton = document.querySelector('[data-action="power"]');
-const calculateButton = document.querySelector('[data-action="calculate"]');
-const calculatorButtons = document.querySelectorAll(".button:not([data-action='power'])");
+const buttons = document.querySelectorAll("button");
 
-let expression = "";
+let formula = "";
 let isPowerOn = true;
-let isCalculated = false;
 
-function updateDisplay(value = expression || "0") {
-  display.value = value;
+function showFormula() {
+  display.value = formula || "0";
 }
 
-function appendNumber(number) {
+function addValue(value) {
   if (!isPowerOn) return;
 
-  if (isCalculated) {
-    expression = "";
-    isCalculated = false;
-  }
-
-  const lastNumber = expression.split(/[+\-*/]/).pop();
-  if (number === "." && lastNumber.includes(".")) return;
-
-  expression += number;
-  updateDisplay();
+  formula += value;
+  showFormula();
 }
 
-function appendOperator(operator) {
-  if (!isPowerOn || expression === "") return;
-
-  if (/[+\-*/]$/.test(expression)) {
-    expression = expression.slice(0, -1) + operator;
-  } else {
-    expression += operator;
-  }
-
-  isCalculated = false;
-  updateDisplay();
-}
-
-function calculateExpression(value) {
-  const tokens = value.match(/(?:\d*\.\d+|\d+\.?\d*|[+\-*/])/g);
-  if (!tokens || tokens.join("") !== value || tokens.length < 3 || tokens.length % 2 === 0) {
-    return "Error";
-  }
-
-  const multiplied = [];
-  let index = 0;
-
-  while (index < tokens.length) {
-    const token = tokens[index];
-
-    if (token === "*" || token === "/") {
-      const left = Number(multiplied.pop());
-      const right = Number(tokens[index + 1]);
-      if (!Number.isFinite(left) || !Number.isFinite(right)) return "Error";
-      if (token === "/" && right === 0) return "0으로 나눌 수 없습니다.";
-      multiplied.push(token === "*" ? left * right : left / right);
-      index += 2;
-    } else {
-      multiplied.push(token);
-      index += 1;
-    }
-  }
-
-  let result = Number(multiplied[0]);
-  if (!Number.isFinite(result)) return "Error";
-
-  for (let i = 1; i < multiplied.length; i += 2) {
-    const operator = multiplied[i];
-    const next = Number(multiplied[i + 1]);
-    if (!Number.isFinite(next)) return "Error";
-    result = operator === "+" ? result + next : result - next;
-  }
-
-  return result;
+function clearDisplay() {
+  formula = "";
+  showFormula();
 }
 
 function calculate() {
-  if (!isPowerOn || expression === "") return;
+  if (!isPowerOn || formula === "") return;
 
-  const result = calculateExpression(expression);
-  updateDisplay(String(result));
-  expression = typeof result === "number" ? String(result) : "";
-  isCalculated = true;
-}
-
-function clearCalculator() {
-  expression = "";
-  isCalculated = false;
-  updateDisplay();
+  try {
+    // JavaScript가 *, /를 먼저 계산해 사칙연산 우선순위를 적용합니다.
+    formula = String(eval(formula));
+    showFormula();
+  } catch (error) {
+    display.value = "Error";
+    formula = "";
+  }
 }
 
 function togglePower() {
   isPowerOn = !isPowerOn;
-  calculatorButtons.forEach((button) => {
-    button.disabled = !isPowerOn;
-  });
 
   if (isPowerOn) {
-    clearCalculator();
-    powerButton.classList.add("is-on");
+    clearDisplay();
   } else {
-    expression = "";
-    isCalculated = false;
-    updateDisplay("");
-    powerButton.classList.remove("is-on");
+    formula = "";
+    display.value = "";
   }
+
+  buttons.forEach((button) => {
+    if (!button.classList.contains("on-off")) {
+      button.disabled = !isPowerOn;
+    }
+  });
 }
 
-numberButtons.forEach((button) => {
-  button.addEventListener("click", () => appendNumber(button.dataset.number));
-});
-
-operatorButtons.forEach((button) => {
-  button.addEventListener("click", () => appendOperator(button.dataset.operator));
-});
-
-clearButton.addEventListener("click", clearCalculator);
-powerButton.addEventListener("click", togglePower);
-calculateButton.addEventListener("click", calculate);
-
-document.addEventListener("keydown", (event) => {
-  if (/\d|\./.test(event.key)) appendNumber(event.key);
-  if (["+", "-", "*", "/"].includes(event.key)) appendOperator(event.key);
-  if (event.key === "Enter") calculate();
-  if (event.key === "Escape") clearCalculator();
+buttons.forEach((button) => {
+  button.addEventListener("click", () => {
+    if (button.classList.contains("on-off")) {
+      togglePower();
+    } else if (button.classList.contains("clear")) {
+      clearDisplay();
+    } else if (button.classList.contains("enter")) {
+      calculate();
+    } else {
+      addValue(button.dataset.value);
+    }
+  });
 });
