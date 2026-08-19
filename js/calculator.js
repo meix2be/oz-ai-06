@@ -1,65 +1,138 @@
 const display = document.querySelector("#display");
-const buttons = document.querySelectorAll("button");
 
-let formula = "";
+let currentFormula = "";
 let isPowerOn = true;
+let isCalculated = false;
 
-function showFormula() {
-  display.value = formula || "0";
+window.addEventListener("load", () => {
+  document.querySelector(".on-off").classList.add("on");
+});
+
+function add(a, b) {
+  return a + b;
 }
 
-function addValue(value) {
-  if (!isPowerOn) return;
-
-  formula += value;
-  showFormula();
+function subtract(a, b) {
+  return a - b;
 }
 
-function clearDisplay() {
-  formula = "";
-  showFormula();
+function multiply(a, b) {
+  return a * b;
 }
 
-function calculate() {
-  if (!isPowerOn || formula === "") return;
-
-  try {
-    // JavaScript가 *, /를 먼저 계산해 사칙연산 우선순위를 적용합니다.
-    formula = String(eval(formula));
-    showFormula();
-  } catch (error) {
-    display.value = "Error";
-    formula = "";
-  }
+function divide(a, b) {
+  return a / b;
 }
 
 function togglePower() {
   isPowerOn = !isPowerOn;
+  const buttons = document.querySelectorAll("button:not(.on-off)");
+  const onOffButton = document.querySelector(".on-off");
 
   if (isPowerOn) {
-    clearDisplay();
+    display.value = "0";
+    onOffButton.classList.add("on");
+    buttons.forEach((button) => button.removeAttribute("disabled"));
   } else {
-    formula = "";
     display.value = "";
+    onOffButton.classList.remove("on");
+    buttons.forEach((button) => button.setAttribute("disabled", "true"));
+    currentFormula = "";
+    isCalculated = false;
   }
-
-  buttons.forEach((button) => {
-    if (!button.classList.contains("on-off")) {
-      button.disabled = !isPowerOn;
-    }
-  });
 }
 
-buttons.forEach((button) => {
-  button.addEventListener("click", () => {
-    if (button.classList.contains("on-off")) {
-      togglePower();
-    } else if (button.classList.contains("clear")) {
-      clearDisplay();
-    } else if (button.classList.contains("enter")) {
-      calculate();
+function appendNumber(number) {
+  if (!isPowerOn) return;
+
+  if (isCalculated) {
+    display.value = "";
+    currentFormula = "";
+    isCalculated = false;
+  }
+
+  if (display.value === "0" || display.value === "Error" || display.value === "DivBy0") {
+    display.value = number;
+    currentFormula = number;
+  } else {
+    display.value += number;
+    currentFormula += number;
+  }
+}
+
+function appendOperator(operator) {
+  if (!isPowerOn || display.value === "Error" || display.value === "DivBy0") return;
+
+  if (isCalculated) isCalculated = false;
+  if (currentFormula === "") currentFormula = "0";
+
+  if (currentFormula.endsWith(" ")) {
+    currentFormula = currentFormula.slice(0, -3);
+  }
+
+  currentFormula += ` ${operator} `;
+  display.value = currentFormula;
+}
+
+function clearDisplay() {
+  if (!isPowerOn) return;
+
+  display.value = "0";
+  currentFormula = "";
+  isCalculated = false;
+}
+
+function calculate(formula) {
+  const tokens = formula.trim().split(/\s+/);
+  if (tokens.length < 3 || tokens.length % 2 === 0) return "Error";
+
+  const intermediateTokens = [];
+  let index = 0;
+
+  while (index < tokens.length) {
+    if (tokens[index] === "*" || tokens[index] === "/") {
+      const left = Number(intermediateTokens.pop());
+      const right = Number(tokens[index + 1]);
+
+      if (Number.isNaN(left) || Number.isNaN(right)) return "Error";
+      if (tokens[index] === "/" && right === 0) return "DivBy0";
+
+      const result = tokens[index] === "*"
+        ? multiply(left, right)
+        : divide(left, right);
+
+      intermediateTokens.push(result);
+      index += 2;
     } else {
-      addValue(button.dataset.value);
+      intermediateTokens.push(tokens[index]);
+      index += 1;
     }
-  });
-});
+  }
+
+  let result = Number(intermediateTokens[0]);
+  if (Number.isNaN(result)) return "Error";
+
+  for (let i = 1; i < intermediateTokens.length; i += 2) {
+    const operator = intermediateTokens[i];
+    const nextValue = Number(intermediateTokens[i + 1]);
+    if (Number.isNaN(nextValue)) return "Error";
+
+    if (operator === "+") result = add(result, nextValue);
+    else if (operator === "-") result = subtract(result, nextValue);
+    else return "Error";
+  }
+
+  return result;
+}
+
+function performCalculate() {
+  if (!isPowerOn || !currentFormula) return;
+
+  currentFormula = currentFormula.trim();
+  const result = calculate(currentFormula);
+  display.value = result;
+  isCalculated = true;
+
+  if (result === "Error" || result === "DivBy0") currentFormula = "";
+  else currentFormula = String(result);
+}

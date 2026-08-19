@@ -1,40 +1,41 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>JS 사칙연산 계산기</title>
-  <link rel="stylesheet" href="calculator_style.css">
-  <script src="calculator.js" defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS 사칙연산 계산기 v2</title>
+    <link rel="stylesheet" href="calculator_style.css">
 </head>
 <body>
-  <div class="calculator">
+
+<div class="calculator">
     <input type="text" id="display" readonly value="0">
-
     <div class="buttons">
-      <button class="button on-off" data-action="power">ON/OFF</button>
-      <button class="button clear" data-action="clear">C</button>
-      <button class="button operator" data-value="/">/</button>
+        <button class="on-off" onclick="togglePower()">ON/OFF</button>
+        <button class="clear" onclick="clearDisplay()">C</button>
+        <button class="operator" onclick="appendOperator('/')">/</button>
 
-      <button class="button number" data-value="7">7</button>
-      <button class="button number" data-value="8">8</button>
-      <button class="button number" data-value="9">9</button>
-      <button class="button operator" data-value="*">*</button>
+        <button class="number" onclick="appendNumber('7')">7</button>
+        <button class="number" onclick="appendNumber('8')">8</button>
+        <button class="number" onclick="appendNumber('9')">9</button>
+        <button class="operator" onclick="appendOperator('*')">*</button>
 
-      <button class="button number" data-value="4">4</button>
-      <button class="button number" data-value="5">5</button>
-      <button class="button number" data-value="6">6</button>
-      <button class="button operator" data-value="-">-</button>
+        <button class="number" onclick="appendNumber('4')">4</button>
+        <button class="number" onclick="appendNumber('5')">5</button>
+        <button class="number" onclick="appendNumber('6')">6</button>
+        <button class="operator" onclick="appendOperator('-')">-</button>
 
-      <button class="button number" data-value="1">1</button>
-      <button class="button number" data-value="2">2</button>
-      <button class="button number" data-value="3">3</button>
-      <button class="button operator" data-value="+">+</button>
+        <button class="number" onclick="appendNumber('1')">1</button>
+        <button class="number" onclick="appendNumber('2')">2</button>
+        <button class="number" onclick="appendNumber('3')">3</button>
+        <button class="operator" onclick="appendOperator('+')">+</button>
 
-      <button class="button number" data-value=".">.</button>
-      <button class="button number" data-value="0">0</button>
-      <button class="button enter" data-action="calculate">Enter</button>
+        <button class="number" onclick="appendNumber('.')">.</button>
+        <button class="number" onclick="appendNumber('0')">0</button>
+        <button class="enter" onclick="performCalculate()">Enter</button>
     </div>
-  </div>
+</div>
+
+<script src="calculator.js"></script>
 </body>
 </html>
