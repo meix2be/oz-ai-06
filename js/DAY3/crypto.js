@@ -81,7 +81,7 @@ function renderCoins() {
     return;
   }
 
-  filteredCoins.slice(0, 100).forEach((coin) => {
+  filteredCoins.forEach((coin) => {
     list.appendChild(createCoinRow(coin));
   });
 }
